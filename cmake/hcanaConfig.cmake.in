@@ -15,3 +15,10 @@ include("@PACKAGE_TARGETS_FILE@")
 
 check_required_components(@PROJECT_NAME_UC@)
 
+## Extra rpath stuff for MacOS
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+  set(CMAKE_INSTALL_RPATH 
+    ${CMAKE_INSTALL_RPATH} 
+    "@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_LIBDIR@")
+  message("Podd: set rpath to ${CMAKE_INSTALL_RPATH}")
+endif()
