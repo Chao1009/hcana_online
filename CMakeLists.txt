@@ -4,6 +4,8 @@ project(hcana VERSION 0.90 LANGUAGES CXX)
 
 option(HCANA_BUILTIN_PODD "Use built-in Podd submodule (default: YES)" OFF)
 
+include(cmake/os.cmake)
+
 find_package(ROOT 6.0 REQUIRED CONFIG)
 include(${ROOT_USE_FILE})
 
