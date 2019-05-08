@@ -9,9 +9,9 @@ if(IS_DIRECTORY "@PACKAGE_INSTALL_CONFIGDIR@/Modules")
   list(APPEND CMAKE_MODULE_PATH "@PACKAGE_INSTALL_CONFIGDIR@/Modules")
 endif()
 
-@FIND_DEPENDENCY_COMMANDS@
-
 include("@PACKAGE_TARGETS_FILE@")
+
+@FIND_DEPENDENCY_COMMANDS@
 
 check_required_components(@PROJECT_NAME_UC@)
 
@@ -20,5 +20,5 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   set(CMAKE_INSTALL_RPATH 
     ${CMAKE_INSTALL_RPATH} 
     "@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_LIBDIR@")
-  message("Podd: set rpath to ${CMAKE_INSTALL_RPATH}")
+  message("hcana: set rpath to ${CMAKE_INSTALL_RPATH}")
 endif()
