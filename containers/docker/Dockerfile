@@ -17,12 +17,12 @@ RUN   ls -lrth /usr/local/lib/lib*.so \
   && export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH  \
   && export PATH=/usr/local/bin:$PATH  \
   && git clone https://eicweb.phy.anl.gov/jlab/analyzer.git \
-  && mkdir analyzer/build && cd analyzer/build  && git checkout scandalizer && git pull \
+  && mkdir analyzer/build && cd analyzer/build   && git pull \
   && cmake ../.  && make -j20 && make install \
   && cd /tmp  && rm -rf analyzer \
   && git clone https://eicweb.phy.anl.gov/jlab/hcana.git \
   && mkdir hcana/build && cd hcana/build  \
-  && git checkout scandalizer && git pull \
+  && git pull \
   && cmake ../.  && make -j20 && make install \ 
   && cd /tmp && rm -rf hcana 
 
