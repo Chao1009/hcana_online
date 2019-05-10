@@ -49,3 +49,88 @@ From: hallac/hcana:latest
 #  #exec /usr/local/bin/run_bubble_sim "$@"
 
 
+
+# =======================
+%apprun root
+  root "$@"
+
+%appenv root
+  export PYTHONPATH=/usr/local/lib:${PYTHONPATH}
+  export PATH=/usr/local/bin:${PATH}
+  export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  export ROOT_INCLUDE_PATH=/usr/local/include/podd:/usr/local/include/hcana
+  #source /usr/local/bin/thisroot.sh
+
+# =======================
+# analyzer
+# =======================
+%apprun analyzer
+  analyzer "$@"
+
+%appenv analyzer
+  export PYTHONPATH=/usr/local/lib:${PYTHONPATH}
+  export PATH=/usr/local/bin:${PATH}
+  export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  export ROOT_INCLUDE_PATH=/usr/local/include/podd:/usr/local/include/hcana
+  #source /usr/local/bin/thisroot.sh
+
+# =======================
+# hcana
+# =======================
+%apphelp hcana
+  Run the Hall-C analyzer with same root-style arguments.
+
+%apprun hcana
+  hcana "$@"
+
+%appenv hcana
+  export DB_DIR=DBASE
+  export PYTHONPATH=/usr/local/lib:${PYTHONPATH}
+  export PATH=/usr/local/bin:${PATH}
+  export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  export ROOTSYS=/usr/local
+  export ROOT_INCLUDE_PATH=/usr/local/include
+  #source /usr/local/bin/thisroot.sh
+
+# =======================
+# root-config
+# =======================
+%apprun root-config
+  #source /usr/local/bin/thisroot.sh
+  root-config "$@"
+
+%appenv root-config
+  export PYTHONPATH=/usr/local/lib:${PYTHONPATH}
+  export PATH=/usr/local/bin:${PATH}
+  export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  export ROOT_INCLUDE_PATH=/usr/local/include/podd:/usr/local/include/hcana
+  #source /usr/local/bin/thisroot.sh
+
+
+# =======================
+# rootbrowse
+# =======================
+%apprun rootbrowse
+  #source /usr/local/bin/thisroot.sh
+  rootbrowse "$@"
+
+%appenv rootbrowse
+  export PYTHONPATH=/usr/local/lib:${PYTHONPATH}
+  export PATH=/usr/local/bin:${PATH}
+  export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  export ROOT_INCLUDE_PATH=/usr/local/include/podd:/usr/local/include/hcana
+  #source /usr/local/bin/thisroot.sh
+
+# =======================
+# rootls
+# =======================
+%apprun rootls
+#source /usr/local/bin/thisroot.sh
+  rootls "$@"
+
+%appenv rootls
+  export PYTHONPATH=/usr/local/lib:${PYTHONPATH}
+  export PATH=/usr/local/bin:${PATH}
+  export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  export ROOT_INCLUDE_PATH=/usr/local/include/podd:/usr/local/include/hcana
+  #source /usr/local/bin/thisroot.sh
