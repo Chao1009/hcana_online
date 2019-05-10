@@ -65,6 +65,7 @@ From: hallac/hcana:latest
 # analyzer
 # =======================
 %apprun analyzer
+  source /usr/local/bin/thisroot.sh
   analyzer "$@"
 
 %appenv analyzer
@@ -72,7 +73,6 @@ From: hallac/hcana:latest
   export PATH=/usr/local/bin:${PATH}
   export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
   export ROOT_INCLUDE_PATH=/usr/local/include/podd:/usr/local/include/hcana
-  #source /usr/local/bin/thisroot.sh
 
 # =======================
 # hcana
@@ -81,6 +81,7 @@ From: hallac/hcana:latest
   Run the Hall-C analyzer with same root-style arguments.
 
 %apprun hcana
+  source /usr/local/bin/thisroot.sh
   hcana "$@"
 
 %appenv hcana
@@ -90,13 +91,12 @@ From: hallac/hcana:latest
   export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
   export ROOTSYS=/usr/local
   export ROOT_INCLUDE_PATH=/usr/local/include
-  #source /usr/local/bin/thisroot.sh
 
 # =======================
 # root-config
 # =======================
 %apprun root-config
-  #source /usr/local/bin/thisroot.sh
+  source /usr/local/bin/thisroot.sh
   root-config "$@"
 
 %appenv root-config
@@ -104,14 +104,13 @@ From: hallac/hcana:latest
   export PATH=/usr/local/bin:${PATH}
   export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
   export ROOT_INCLUDE_PATH=/usr/local/include/podd:/usr/local/include/hcana
-  #source /usr/local/bin/thisroot.sh
 
 
 # =======================
 # rootbrowse
 # =======================
 %apprun rootbrowse
-  #source /usr/local/bin/thisroot.sh
+  source /usr/local/bin/thisroot.sh
   rootbrowse "$@"
 
 %appenv rootbrowse
@@ -119,13 +118,12 @@ From: hallac/hcana:latest
   export PATH=/usr/local/bin:${PATH}
   export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
   export ROOT_INCLUDE_PATH=/usr/local/include/podd:/usr/local/include/hcana
-  #source /usr/local/bin/thisroot.sh
 
 # =======================
 # rootls
 # =======================
 %apprun rootls
-#source /usr/local/bin/thisroot.sh
+  source /usr/local/bin/thisroot.sh
   rootls "$@"
 
 %appenv rootls
@@ -133,4 +131,3 @@ From: hallac/hcana:latest
   export PATH=/usr/local/bin:${PATH}
   export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
   export ROOT_INCLUDE_PATH=/usr/local/include/podd:/usr/local/include/hcana
-  #source /usr/local/bin/thisroot.sh
