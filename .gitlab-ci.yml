@@ -20,7 +20,7 @@ hcana_docker:
        # - docker push eicweb.phy.anl.gov:4567/whit/image_recipes/ubuntu_base:latest
 
 
-hcana_singular:
+hcana_singularity:
   tags: 
      - singularity
   stage: phase2
