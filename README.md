@@ -23,6 +23,12 @@ Downloading
 Instructions for downloading hcana can be found in the
 [Hall C Wiki](https://hallcweb.jlab.org/wiki/index.php/ROOT_Analyzer/Git).
 
+```
+wget \
+https://eicweb.phy.anl.gov/jlab/hcana/-/jobs/artifacts/master/raw/build/Singularity.hcana.simg?job=hcana_singularity \
+-O Singularity.hcana.simg
+```
+
 Compiling
 ---------
 
