@@ -3,49 +3,113 @@ From: hallac/hcana:latest
 
 
 %help
-  Help me. I'm in the container.
+  Hall A/C container.
+  Tools:
+     - evio        : EVIO DAQ data format  
+     - analyzer    : Hall A analyzer (podd) 
+     - hcana       : Hall C analyzer (hcana)
 
 %labels
-  Maintainer "Whitney Armstrong"
+  Maintainer "Whitney Armstrong, Sylvester Joosten"
   Version v1.0
 
+%setup -c /bin/bash
+  export SINGULARITY_SHELL=/bin/bash
+
 %environment -c /bin/bash
-  export PYTHONPATH=/usr/local/lib:$PYTHONPATH
-  source /usr/local/bin/thisroot.sh
+  export PYTHONPATH=/usr/local/lib:${PYTHONPATH}
+  export PATH=/usr/local/bin:${PATH}
+  export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  export ROOT_INCLUDE_PATH=/usr/local/include:/usr/local/include/podd:/usr/local/include/hcana
 
 %post -c /bin/bash
   echo "Hello from post"
+  echo "Install additional software here"
   source /usr/local/bin/thisroot.sh
-  export PYTHONPATH=/usr/local/lib:$PYTHONPATH
-  #git clone https://gitlab+deploy-token-1:FaNA-Yg4s7hpjvWPZnq8@eicweb.phy.anl.gov/upsilon/Pcsim.git 
-  #mkdir Pcsim/build && cd Pcsim/build 
-  #cmake ../. 
-  #make -j20
-  #make install
 
+# =======================
+# global
+# =======================
 
 %runscript
-  echo "Hello from runscirpt"
-  echo "Rooooar!"
-  echo "Arguments received: $*"
-  exec echo "$@"
-
-#  derp=
-#  if [ -p /dev/stdin ]; then
-#    # If we want to read the input line by line
-#    while IFS= read line; do
-#      #echo "Line: ${line}"
-#      if [ -z ${derp} ]; then
-#        derp="${line}"
-#      else 
-#        derp="${derp}\n${line}"
-#      fi
-#    done
-#  fi
-#  /bin/bash <<EOF
-#  source /usr/local/bin/geant4.sh
-#  echo -e ${derp} | bubble_chamber $@
-#EOF
-#  #exec /usr/local/bin/run_bubble_sim "$@"
+  echo "Launching a shell in the Hall A/C singularity container
+  exec bash
 
 
+# =======================
+# root
+# =======================
+%apprun root
+  root "$@"
+
+%appenv root
+  export PYTHONPATH=/usr/local/lib:${PYTHONPATH}
+  export PATH=/usr/local/bin:${PATH}
+  export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  export ROOT_INCLUDE_PATH=/usr/local/include/podd:/usr/local/include/hcana
+
+# =======================
+# analyzer
+# =======================
+%apprun analyzer
+  analyzer "$@"
+
+%appenv analyzer
+  export PYTHONPATH=/usr/local/lib:${PYTHONPATH}
+  export PATH=/usr/local/bin:${PATH}
+  export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  export ROOT_INCLUDE_PATH=/usr/local/include/podd:/usr/local/include/hcana
+
+# =======================
+# hcana
+# =======================
+%apphelp hcana
+  Run the Hall-C analyzer with same root-style arguments.
+
+%apprun hcana
+  hcana "$@"
+
+%appenv hcana
+  export DB_DIR=DBASE
+  export PYTHONPATH=/usr/local/lib:${PYTHONPATH}
+  export PATH=/usr/local/bin:${PATH}
+  export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  export ROOTSYS=/usr/local
+  export ROOT_INCLUDE_PATH=/usr/local/include
+
+# =======================
+# root-config
+# =======================
+%apprun root-config
+  root-config "$@"
+
+%appenv root-config
+  export PYTHONPATH=/usr/local/lib:${PYTHONPATH}
+  export PATH=/usr/local/bin:${PATH}
+  export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  export ROOT_INCLUDE_PATH=/usr/local/include/podd:/usr/local/include/hcana
+
+
+# =======================
+# rootbrowse
+# =======================
+%apprun rootbrowse
+  rootbrowse "$@"
+
+%appenv rootbrowse
+  export PYTHONPATH=/usr/local/lib:${PYTHONPATH}
+  export PATH=/usr/local/bin:${PATH}
+  export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  export ROOT_INCLUDE_PATH=/usr/local/include/podd:/usr/local/include/hcana
+
+# =======================
+# rootls
+# =======================
+%apprun rootls
+  rootls "$@"
+
+%appenv rootls
+  export PYTHONPATH=/usr/local/lib:${PYTHONPATH}
+  export PATH=/usr/local/bin:${PATH}
+  export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  export ROOT_INCLUDE_PATH=/usr/local/include/podd:/usr/local/include/hcana
