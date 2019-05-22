@@ -13,8 +13,8 @@ hcana_docker:
      - eic0 docker
   script:
      - docker login eicweb.phy.anl.gov:4567 -u whit -p ${CI_IMAGE_BUILD_PAT}
-     - cd containers/docker && make build-nc && make build && make publish
-     - docker push eicweb.phy.anl.gov:4567/jlab/hcana
+     - cd containers/docker && make release
+       #- docker push eicweb.phy.anl.gov:4567/jlab/hcana
        # - docker login eicweb.phy.anl.gov:4567 -u whit -p ${eic0_registry_push_token}
        # - docker tag  whit/image_recipes/ubuntu_base:latest eicweb.phy.anl.gov:4567/whit/image_recipes/ubuntu_base:latest
        # - docker push eicweb.phy.anl.gov:4567/whit/image_recipes/ubuntu_base:latest
