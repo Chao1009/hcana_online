@@ -28,7 +28,10 @@ From: hallac/hcana:latest
   source /usr/local/bin/thisroot.sh
   ## libformat and nlohmann json used heavily in new generation replay scripts
   ## libformat
-  apt-get install libfmt-dev
+  cd /tmp && git clone https://github.com/fmtlib/fmt.git && cd fmt && \
+    git checkout 5.3.0 && mkdir /tmp/build && cd /tmp/build && \
+    cmake -DBUILD_SHARED_LIBS=TRUE ../fmt &&
+    make -j4 install && cd /tmp && rm -r /tmp/build && rm -r /tmp/fmt
   ## json
   apt-get install nlohmann-json-dev
 
