@@ -26,6 +26,11 @@ From: hallac/hcana:latest
   echo "Hello from post"
   echo "Install additional software here"
   source /usr/local/bin/thisroot.sh
+  ## libformat and nlohmann json used heavily in new generation replay scripts
+  ## libformat
+  apt-get install libfmt-dev
+  ## json
+  apt-get install nlohmann-json-dev
 
 # =======================
 # global
