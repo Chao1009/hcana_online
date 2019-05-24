@@ -1,13 +1,14 @@
 Bootstrap: docker
 From: hallac/hcana:latest
 
-
 %help
   Hall A/C container.
   Tools:
      - evio        : EVIO DAQ data format  
      - analyzer    : Hall A analyzer (podd) 
      - hcana       : Hall C analyzer (hcana)
+     - root        : root version used for the analyzer
+     - rootls, rootbrowse, root-config
 
 %labels
   Maintainer "Whitney Armstrong, Sylvester Joosten"
