@@ -75,6 +75,7 @@
 #pragma link C++ class THcRunParameters+;
 #pragma link C++ class THcScalerEvtHandler+;
 #pragma link C++ class THcScintillatorPlane+;
+#pragma link C++ class THcScintPlaneCluster+;
 #pragma link C++ class THcSecondaryKine+;
 #pragma link C++ class THcShowerArray+;
 #pragma link C++ class THcShower+;
