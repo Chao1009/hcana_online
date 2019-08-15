@@ -8,6 +8,12 @@ RUN   ls -lrth /usr/local/lib/lib*.so \
   && export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH  \
   && export PATH=/usr/local/bin:$PATH  \
   && source /usr/local/bin/thisroot.sh \
+  && cd /tmp
+  && git clone https://github.com/fmtlib/fmt.git && cd fmt \
+  && git checkout 5.3.0 && mkdir /tmp/build && cd /tmp/build \
+  && cmake -DBUILD_SHARED_LIBS=TRUE ../fmt
+  &&  make -j20 install \
+  && cd /tmp && rm -r /tmp/build && rm -r /tmp/fmt \
   && cd /tmp  \
   && git clone https://eicweb.phy.anl.gov/jlab/hallc/analyzer_software/hallac_evio.git \
   && mkdir hallac_evio/build && cd hallac_evio/build  \
