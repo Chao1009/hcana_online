@@ -3,7 +3,7 @@ image: eicweb.phy.anl.gov:4567/whit/image_recipes/root_base:latest
 stages:
   - build
   - build_sing_img
-  - data_tests
+#  - data_tests
 
 hcana_docker:
   stage: build  
@@ -17,23 +17,24 @@ hcana_singularity:
   tags: 
      - singularity
   stage: build_sing_img
-  when: manual
+  #when: manual
   dependencies:
      - hcana_docker
   script:
-     - /bin/bash .gitlabci/setup.sh
-     - mkdir -p build
-     - pwd
+     #- /bin/bash .gitlabci/setup.sh
+     #- mkdir -p build
+     #- pwd
      - cp containers/singularity/Singularity Singularity.hcana
-     - /bin/bash .gitlabci/build.sh Singularity.hcana
-     - cp Singularity.hcana.simg build/.
+     #- /bin/bash .gitlabci/build.sh Singularity.hcana
+     #- cp Singularity.hcana.simg build/.
      - cp Singularity.hcana build/.
   artifacts:
       paths:
-        - build/Singularity.hcana.simg
+        #- build/Singularity.hcana.simg
         - build/Singularity.hcana
 
 elastic_tests:
-  stage: data_tests
+  #stage: data_tests
+  dependency: hcana_singularity
   script:
      - bash tests/elastic_test.sh
