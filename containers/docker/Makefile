@@ -95,7 +95,7 @@ publish: login publish-latest #publish-version ## Publish the `{version}` ans `l
 
 push: login ## push after login @echo 'push latest to $(REG_NAME)/$(REPO)/$(APP_NAME):latest'
 	docker tag  $(APP_NAME):latest $(REG_NAME)/$(GL_REG_GROUP)/$(APP_NAME):latest
-	docker push $(REG_NAME)/$(GL_REG_GROUP)/$(APP_NAME):latest
+	docker push $(REG_HOST)/$(GL_REG_GROUP)/$(APP_NAME):latest
 
 publish-latest: ## Publish the `latest` taged container to ECR
 	@echo 'publish latest to $(REG_NAME)/$(GL_REG_GROUP)/$(APP_NAME)'
