@@ -1,11 +1,9 @@
 image: eicweb.phy.anl.gov:4567/whit/image_recipes/root_base:latest
 
-#docker pull eicweb.phy.anl.gov:4567/whit/image_recipes/ubuntu_base:latest 
-
 stages:
   - build
-  - phase2
-
+  - build_sing_img
+  - data_tests
 
 hcana_docker:
   stage: build  
@@ -15,11 +13,10 @@ hcana_docker:
      - docker login eicweb.phy.anl.gov -u whit -p ${CI_IMAGE_BUILD_PAT}
      - cd containers/docker && make release
 
-
 hcana_singularity:
   tags: 
      - singularity
-  stage: phase2
+  stage: build_sing_img
   dependencies:
      - hcana_docker
   script:
@@ -35,4 +32,7 @@ hcana_singularity:
         - build/Singularity.hcana.simg
         - build/Singularity.hcana
 
-
+elastic_tests:
+  stage: data_tests
+  script:
+     - bash tests/elastic_test.sh
