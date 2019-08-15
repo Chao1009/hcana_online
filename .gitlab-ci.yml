@@ -3,7 +3,7 @@ image: eicweb.phy.anl.gov:4567/whit/image_recipes/root_base:latest
 stages:
   - build
   - build_sing_img
-#  - data_tests
+  - data_tests
 
 hcana_docker:
   stage: build  
@@ -34,7 +34,7 @@ hcana_singularity:
 #- build/Singularity.hcana.simg
 
 elastic_tests:
-  #stage: data_tests
+  stage: data_tests
   dependencies: 
      - hcana_singularity
   script:
