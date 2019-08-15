@@ -12,3 +12,4 @@ singularity help build/Singularity.hcana.simg
 
 singularity exec build/Singularity.hcana.simg which hcana
 
+singularity exec build/Singularity.hcana.simg hcana tests/my_root_script.cxx
