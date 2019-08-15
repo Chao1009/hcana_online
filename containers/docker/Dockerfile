@@ -19,7 +19,7 @@ RUN   ls -lrth /usr/local/lib/lib*.so \
   && export PATH=/usr/local/bin:$PATH  \
   && git clone https://eicweb.phy.anl.gov/jlab/hallc/analyzer_software/analyzer.git \
   && mkdir analyzer/build && cd analyzer/build   && git pull \
-  && cmake ../.  && make -j20 && make install \
+  && cmake ../.  && make -j20 VERBOSE=1 && make install \
   && cd /tmp  && rm -rf analyzer \
   && git clone https://eicweb.phy.anl.gov/jlab/hcana.git \
   && mkdir hcana/build && cd hcana/build  \
