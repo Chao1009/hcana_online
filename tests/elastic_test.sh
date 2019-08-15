@@ -7,3 +7,8 @@ which hcana
 
 ls -lrth
 ls -lrth build
+
+singularity help build/Singularity.hcana.simg
+
+singularity exec build/Singularity.hcana.simg which hcana
+

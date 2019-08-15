@@ -20,20 +20,22 @@ hcana_singularity:
   #when: manual
   dependencies:
      - hcana_docker
-#- /bin/bash .gitlabci/setup.sh
   script:
+     - /bin/bash .gitlabci/setup.sh
      - mkdir -p build
      - pwd
      - cp containers/singularity/Singularity Singularity.hcana
      - cp Singularity.hcana build/.
-#- /bin/bash .gitlabci/build.sh Singularity.hcana
-#- cp Singularity.hcana.simg build/.
+     - /bin/bash .gitlabci/build.sh Singularity.hcana
+     - cp Singularity.hcana.simg build/.
   artifacts:
       paths:
         - build/Singularity.hcana
-#- build/Singularity.hcana.simg
+        - build/Singularity.hcana.simg
 
 elastic_tests:
+  tags: 
+     - eic0 docker
   stage: data_tests
   dependencies: 
      - hcana_singularity
