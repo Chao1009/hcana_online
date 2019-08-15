@@ -37,13 +37,14 @@ hcana_singularity:
 elastic_replay:
   tags: 
      - eic0 docker
-  stage: data_replay
+  stage: data_replays
   dependencies: 
      - hcana_singularity
   script:
      - bash tests/replay_elastic_data.sh
   artifacts:
-     - ROOTfiles/blah.root
+     paths: 
+       - ROOTfiles/blah.root
 
 
 elastic_test1:
