@@ -14,10 +14,6 @@ hcana_docker:
   script:
      - docker login eicweb.phy.anl.gov -u whit -p ${CI_IMAGE_BUILD_PAT}
      - cd containers/docker && make release
-       #- docker push eicweb.phy.anl.gov:4567/jlab/hcana
-       # - docker login eicweb.phy.anl.gov:4567 -u whit -p ${eic0_registry_push_token}
-       # - docker tag  whit/image_recipes/ubuntu_base:latest eicweb.phy.anl.gov:4567/whit/image_recipes/ubuntu_base:latest
-       # - docker push eicweb.phy.anl.gov:4567/whit/image_recipes/ubuntu_base:latest
 
 
 hcana_singularity:

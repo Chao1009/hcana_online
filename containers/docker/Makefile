@@ -89,9 +89,9 @@ tag-alt-version: ## Generate container `{version}` tag
 login: ## Auto login to AWS-ECR unsing aws-cli
 	docker login $(REG_NAME) -u $(REG_USER) -p $(REG_TOKEN)
 
-release: build-nc publish ## Make a release by building and publishing the `{version}` ans `latest` tagged containers to ECR
+release: build publish ## Make a release by building and publishing the `{version}` ans `latest` tagged containers to ECR
 
-publish: login publish-latest #publish-version ## Publish the `{version}` ans `latest` tagged containers to ECR
+publish: publish-latest #publish-version ## Publish the `{version}` ans `latest` tagged containers to ECR
 
 push: login ## push after login @echo 'push latest to $(REG_NAME)/$(REPO)/$(APP_NAME):latest'
 	docker tag  $(APP_NAME):latest $(REG_NAME)/$(GL_REG_GROUP)/$(APP_NAME):latest
