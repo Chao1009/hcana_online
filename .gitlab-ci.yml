@@ -35,6 +35,7 @@ hcana_singularity:
 
 elastic_tests:
   #stage: data_tests
-  dependencies: hcana_singularity
+  dependencies: 
+     - hcana_singularity
   script:
      - bash tests/elastic_test.sh
