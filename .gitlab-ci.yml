@@ -30,8 +30,8 @@ hcana_singularity:
 #- cp Singularity.hcana.simg build/.
   artifacts:
       paths:
-        #- build/Singularity.hcana.simg
         - build/Singularity.hcana
+#- build/Singularity.hcana.simg
 
 elastic_tests:
   #stage: data_tests
