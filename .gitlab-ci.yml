@@ -42,7 +42,7 @@ elastic_replay:
      - hcana_singularity
   script:
      - bash tests/replay_elastic_data.sh
-  artifact:
+  artifacts:
      - ROOTfiles/blah.root
 
 
@@ -63,4 +63,5 @@ elastic_test2:
      - elastic_replay
   script:
      - bash tests/elastic_test2.sh
+
 
