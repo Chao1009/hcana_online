@@ -9,7 +9,7 @@ RUN   ls -lrth /usr/local/lib/lib*.so \
   && export PATH=/usr/local/bin:$PATH  \
   && source /usr/local/bin/thisroot.sh \
   && cd /tmp  \
-  && git clone https://eicweb.phy.anl.gov/jlab/hallac_evio.git \
+  && git clone https://eicweb.phy.anl.gov/jlab/hallc/analyzer_software/hallac_evio.git \
   && mkdir hallac_evio/build && cd hallac_evio/build  \
   && cmake ../.  && make -j20 && make install \
   && cd /tmp && rm -rf hallac_evio \
@@ -17,7 +17,7 @@ RUN   ls -lrth /usr/local/lib/lib*.so \
   && export PYTHONPATH=/usr/local/lib:$PYTHONPATH  \
   && export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH  \
   && export PATH=/usr/local/bin:$PATH  \
-  && git clone https://eicweb.phy.anl.gov/jlab/analyzer.git \
+  && git clone https://eicweb.phy.anl.gov/jlab/hallc/analyzer_software/analyzer.git \
   && mkdir analyzer/build && cd analyzer/build   && git pull \
   && cmake ../.  && make -j20 && make install \
   && cd /tmp  && rm -rf analyzer \
