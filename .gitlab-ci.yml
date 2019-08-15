@@ -20,12 +20,12 @@ hcana_singularity:
   #when: manual
   dependencies:
      - hcana_docker
+#- /bin/bash .gitlabci/setup.sh
   script:
+     - mkdir -p build
+     - pwd
      - cp containers/singularity/Singularity Singularity.hcana
      - cp Singularity.hcana build/.
-#- /bin/bash .gitlabci/setup.sh
-#- mkdir -p build
-#- pwd
 #- /bin/bash .gitlabci/build.sh Singularity.hcana
 #- cp Singularity.hcana.simg build/.
   artifacts:
