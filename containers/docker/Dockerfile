@@ -11,7 +11,7 @@ RUN   ls -lrth /usr/local/lib/lib*.so \
   && cd /tmp
   && git clone https://github.com/fmtlib/fmt.git && cd fmt \
   && git checkout 5.3.0 && mkdir /tmp/build && cd /tmp/build \
-  && cmake -DBUILD_SHARED_LIBS=TRUE ../fmt
+  && cmake -DBUILD_SHARED_LIBS=TRUE ../fmt \
   &&  make -j20 install \
   && cd /tmp && rm -r /tmp/build && rm -r /tmp/fmt \
   && cd /tmp  \
