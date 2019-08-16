@@ -27,6 +27,7 @@ ln -s ../ROOTfiles
 
 # run replay script
 
-singularity exec ../build/Singularity.hcana.simg hcana -b -q "scripts/replay_production_coin.cxx+(6012,1)"
+singularity exec ../build/Singularity.hcana.simg hcana -b -q "scripts/replay_production_coin.cxx+(6012,-1)"
 
-echo " hcana calls... the coin replay script and outputs blah.root"
+echo "hcana calls... the coin replay script and outputs blah.root"
+
