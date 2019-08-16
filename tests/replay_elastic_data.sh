@@ -8,9 +8,9 @@ which hcana
 ls -lrth
 ls -lrth build
 mkdir -p ROOTfiles
-git clone git@eicweb.phy.anl.gov:whit/ci_test_data.git 
-git clone git@eicweb.phy.anl.gov:jlab/hallc/exp/CSV/hallc_replay_csv.git
-git clone git@eicweb.phy.anl.gov:jlab/hallc/exp/CSV/online_csv.git
+git clone https://eicweb.phy.anl.gov/whit/ci_test_data.git 
+git clone https://eicweb.phy.anl.gov/jlab/hallc/exp/CSV/hallc_replay_csv.git
+git clone https://eicweb.phy.anl.gov/jlab/hallc/exp/CSV/online_csv.git
 
 cd online_csv 
 mkdir -p logs
