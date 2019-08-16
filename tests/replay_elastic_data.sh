@@ -25,6 +25,7 @@ ln -s ../ci_test_data/raw
 ln -s ../ROOTfiles
 # and the reset
 
+ls -lrth
 ls -lrth raw/
 ls -lrth ROOTfiles/
 pwd
