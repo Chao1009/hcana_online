@@ -16,18 +16,18 @@ hcana_docker:
 
 hcana_singularity:
   tags: 
-     - eic0 docker
-  #- singularity
+     - singularity
   stage: build_sing_img
   #when: manual
   dependencies:
      - hcana_docker
-    #- /bin/bash .gitlabci/setup.sh
   script:
+     - /bin/bash .gitlabci/setup.sh
      - mkdir -p build
+     - pwd
      - cp containers/singularity/Singularity Singularity.hcana
      - cp Singularity.hcana build/.
-     - singularity build Singularity.hcana.simg Singularity.hcana
+     - /bin/bash .gitlabci/build.sh Singularity.hcana
      - cp Singularity.hcana.simg build/.
   artifacts:
       paths:
@@ -44,7 +44,7 @@ elastic_replay:
      - bash tests/replay_elastic_data.sh
   artifacts:
      paths: 
-       - ROOTfiles/blah.root
+       - ROOTfiles/*
 
 
 elastic_test1:
