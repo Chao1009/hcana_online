@@ -17,8 +17,8 @@ sed -i -e 's/^Defaults\tsecure_path.*$//' /etc/sudoers
 # Install go
 export VERSION=1.12 OS=linux ARCH=amd64 && \
   wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz && \
-  sudo tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz && \
-  rm go$VERSION.$OS-$ARCH.tar.gz  
+  tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz && \
+  rm go$VERSION.$OS-$ARCH.tar.gz   
 
 echo 'export PATH=/usr/local/go/bin:$PATH' >> /etc/profile.d/go.sh && source /etc/profile.d/go.sh
 
@@ -32,7 +32,7 @@ export VERSION=3.3.0 && # adjust this as necessary \
 
 ./mconfig && \
     make -C builddir && \
-    sudo make -C builddir install
+    make -C builddir install
 
 #j# Check Python
 #jecho "Python Version:"
