@@ -22,7 +22,7 @@ hcana_singularity:
   dependencies:
      - hcana_docker
   script:
-     - /bin/bash .gitlabci/setup.sh
+    #- /bin/bash .gitlabci/setup.sh
      - mkdir -p build
      - pwd
      - cp containers/singularity/Singularity Singularity.hcana
@@ -36,7 +36,7 @@ hcana_singularity:
 
 elastic_replay:
   tags: 
-     - eic0 docker
+     - singularity
   stage: data_replays
   dependencies: 
      - hcana_singularity
