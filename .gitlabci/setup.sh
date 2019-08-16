@@ -15,14 +15,12 @@ apt-get update && apt-get install -y wget git \
 sed -i -e 's/^Defaults\tsecure_path.*$//' /etc/sudoers
 
 # Install go
-export VERSION=1.12 OS=linux ARCH=amd64 && \
-  wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz && \
-  tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz && \
-  rm go$VERSION.$OS-$ARCH.tar.gz   
+export VERSION=1.12 OS=linux ARCH=amd64 && \  # Replace the values as needed
+  wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz && \ # Downloads the required Go package
+  sudo tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz && \ # Extracts the archive
+  rm go$VERSION.$OS-$ARCH.tar.gz    # Deletes the ``tar`` file
 
 echo 'export PATH=/usr/local/go/bin:$PATH' >> /etc/profile.d/go.sh && source /etc/profile.d/go.sh
-
-export PATH=/usr/local/go/bin:$PATH
 
 # Install Singularity
 export VERSION=3.3.0 && # adjust this as necessary \
@@ -32,12 +30,12 @@ export VERSION=3.3.0 && # adjust this as necessary \
 
 ./mconfig && \
     make -C builddir && \
-    make -C builddir install
+    sudo make -C builddir install
 
-#j# Check Python
-#jecho "Python Version:"
-#jpython --version
-#jpip install sregistry[all]
-#jsregistry version
+# Check Python
+echo "Python Version:"
+python --version
+pip install sregistry[all]
+sregistry version
 
 
