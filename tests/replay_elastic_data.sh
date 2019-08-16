@@ -30,6 +30,7 @@ ls -lrth raw/
 ls -lrth ROOTfiles/
 pwd
 # run replay script
+df -h
 
 singularity exec ../build/Singularity.hcana.simg hcana -b -q "SCRIPTS/COIN/PRODUCTION/replay_production_coin_hElec_pProt.C+(6012,-1)"
 
