@@ -76,6 +76,7 @@ From: eicweb.phy.anl.gov:4567/jlab/hallc/analyzer_software/hcana:latest
   Run the Hall-C analyzer with same root-style arguments.
 
 %apprun hcana
+  source /usr/local/bin/thisroot.sh
   hcana "$@"
 
 %appenv hcana
@@ -85,6 +86,7 @@ From: eicweb.phy.anl.gov:4567/jlab/hallc/analyzer_software/hcana:latest
   export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
   export ROOTSYS=/usr/local
   export ROOT_INCLUDE_PATH=/usr/local/include
+  export ROOT_INCLUDE_PATH=/usr/local/include:/usr/local/include/podd:/usr/local/include/hcana
 
 # =======================
 # root-config
