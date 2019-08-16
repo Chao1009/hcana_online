@@ -18,7 +18,7 @@ hcana_singularity:
   tags: 
      - singularity
   stage: build_sing_img
-  when: manual
+  #when: manual
   dependencies:
      - hcana_docker
   script:
@@ -41,7 +41,6 @@ elastic_replay:
   dependencies: 
      - hcana_singularity
   script:
-     - mkdir -p build  && wget https://eicweb.phy.anl.gov/jlab/hallc/analyzer_software/hcana/-/jobs/11134/artifacts/raw/build/Singularity.hcana.simg  -O build/Singularity.hcana.simg
      - bash tests/replay_elastic_data.sh
   artifacts:
      paths: 
