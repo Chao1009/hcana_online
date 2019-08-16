@@ -1,4 +1,52 @@
+#include <fmt/core.h>
+#include <fmt/ostream.h>
+#include <vector>
+
+#include "TString.h"
+
+R__LOAD_LIBRARY(libHallC.so)
+#include "hcana/HallC_Data.h"
+#include "DecData.h"
+//R__LOAD_LIBRARY(libScandalizer.so)
+//#include "monitor/DetectorDisplay.h"
+//#include "monitor/DisplayPlots.h"
+//#include "monitor/MonitoringDisplay.h"
+//#include "scandalizer/PostProcessors.h"
+//#include "scandalizer/ScriptHelpers.h"
+//
+//#include "THaPostProcess.h"
+//#include "monitor/ExperimentMonitor.h"
+//#include "scandalizer/PostProcessors.h"
+#include "THcAnalyzer.h"
+#include "THaCut.h"
+#include "THcGlobals.h"
+#include "THcHallCSpectrometer.h"
+#include "THcDetectorMap.h"
+#include "THcCherenkov.h"
+#include "THcDC.h"
+#include "THcHodoscope.h"
+#include "THcParmList.h"
+#include "THaGoldenTrack.h"
+#include "THcHodoEff.h"
+#include "THcScalerEvtHandler.h"
+#include "THcShower.h"
+#include "THcReactionPoint.h"
+#include "THcExtTarCor.h"
+#include "THcRasteredBeam.h"
+#include "THcRun.h"
+#include "THcCoinTime.h"
+#include "THcConfigEvtHandler.h"
+#include "THcTrigDet.h"
+#include "THcTrigApp.h"
+#include "THcSecondaryKine.h"
+#include "THcAerogel.h"
+#include "THcPrimaryKine.h"
+#include "THaReactionPoint.h"
+
+
+
 void elastic_coin_replay(Int_t RunNumber = 0, Int_t MaxEvent = -1) {
+  using namespace std;
 
   // Get RunNumber and MaxEvent if not provided.
   if( RunNumber<=0 ) {
