@@ -32,10 +32,10 @@ export VERSION=3.3.0 && # adjust this as necessary \
     make -C builddir && \
     sudo make -C builddir install
 
-# Check Python
-echo "Python Version:"
-python --version
-pip install sregistry[all]
-sregistry version
+#j# Check Python
+#jecho "Python Version:"
+#jpython --version
+#jpip install sregistry[all]
+#jsregistry version
 
 
