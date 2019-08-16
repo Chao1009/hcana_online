@@ -14,13 +14,13 @@ git clone https://eicweb.phy.anl.gov/jlab/hallc/exp/CSV/online_csv.git
 
 cd online_csv 
 mkdir -p logs
-ln -s ../hallc_reaply_csv/PARAM
-ln -s ../hallc_reaply_csv/DBASE
-ln -s ../hallc_reaply_csv/CALIBRATION
-ln -s ../hallc_reaply_csv/DEF-files
-ln -s ../hallc_reaply_csv/MAPS
-ln -s ../hallc_reaply_csv/SCRIPTS
-ln -s ../hallc_reaply_csv/DATFILES
+ln -s ../hallc_replay_csv/PARAM
+ln -s ../hallc_replay_csv/DBASE
+ln -s ../hallc_replay_csv/CALIBRATION
+ln -s ../hallc_replay_csv/DEF-files
+ln -s ../hallc_replay_csv/MAPS
+ln -s ../hallc_replay_csv/SCRIPTS
+ln -s ../hallc_replay_csv/DATFILES
 ln -s ../ci_test_data/raw
 ln -s ../ROOTfiles
 # and the reset
