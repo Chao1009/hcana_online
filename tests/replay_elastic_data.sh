@@ -32,7 +32,7 @@ pwd
 # run replay script
 df -h
 
-singularity exec ../build/Singularity.hcana.simg hcana -b -q "SCRIPTS/COIN/PRODUCTION/replay_production_coin_hElec_pProt.C+(6012,-1)"
+singularity exec ../build/Singularity.hcana.simg hcana -b -q "../tests/elastic_coin_replay.cxx+(6012,50000)"
 
 echo "hcana calls... the coin replay script and outputs blah.root"
 
