@@ -16,7 +16,8 @@ hcana_docker:
 
 hcana_singularity:
   tags: 
-     - singularity
+     - eic0 docker
+  #- singularity
   stage: build_sing_img
   #when: manual
   dependencies:
