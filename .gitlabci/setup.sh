@@ -23,7 +23,7 @@ export VERSION=1.12 OS=linux ARCH=amd64 && \  # Replace the values as needed
 echo 'export PATH=/usr/local/go/bin:$PATH' >> /etc/profile.d/go.sh && source /etc/profile.d/go.sh
 
 # Install Singularity
-export VERSION=3.3.0 && # adjust this as necessary \
+export VERSION=3.2.0 && # adjust this as necessary \
     wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz && \
     tar -xzf singularity-${VERSION}.tar.gz && \
     cd singularity
