@@ -45,6 +45,8 @@ elastic_replay:
   artifacts:
      paths: 
        - ROOTfiles/*
+       - build/Singularity.hcana
+       - build/Singularity.hcana.simg
 
 
 elastic_test1:
