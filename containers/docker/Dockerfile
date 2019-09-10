@@ -1,4 +1,5 @@
-FROM  hallac/root_base:latest
+FROM eicweb.phy.anl.gov:4567/containers/image_recipes/root_base:latest                                                                                                                                       
+
 LABEL maintainer "Whitney Armstrong <warmstrong@anl.gov>"
 #
 
