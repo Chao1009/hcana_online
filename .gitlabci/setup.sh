@@ -9,14 +9,15 @@ apt-get update && apt-get install -y wget git \
                                           automake \
                                           autoconf \
                                           uuid-dev \
+                                          python3   \
                                           libssl-dev
 
 
 sed -i -e 's/^Defaults\tsecure_path.*$//' /etc/sudoers
 
 # Check Python
-
 echo "Python Version:"
+which python
 python --version
 pip install sregistry[all]
 sregistry version

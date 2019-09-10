@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: hallac/hcana:latest
+From: eicweb.phy.anl.gov:4567/jlab/hallc/analyzer_software/hcana:latest
 
 %help
   Hall A/C container.
@@ -8,7 +8,7 @@ From: hallac/hcana:latest
      - analyzer    : Hall A analyzer (podd) 
      - hcana       : Hall C analyzer (hcana)
      - root        : root version used for the analyzer
-     - rootls, rootbrowse, root-config
+     - rootls, rootbrowse, root_config
 
 %labels
   Maintainer "Whitney Armstrong, Sylvester Joosten"
@@ -29,11 +29,11 @@ From: hallac/hcana:latest
   source /usr/local/bin/thisroot.sh
   ## libformat and nlohmann json used heavily in new generation replay scripts
   ## libformat
-  cd /tmp && git clone https://github.com/fmtlib/fmt.git && cd fmt && \
-    git checkout 5.3.0 && mkdir /tmp/build && cd /tmp/build && \
-    cmake -DBUILD_SHARED_LIBS=TRUE ../fmt &&
-    make -j4 install && cd /tmp && rm -r /tmp/build && rm -r /tmp/fmt
-  ## json
+  #cd /tmp && git clone https://github.com/fmtlib/fmt.git && cd fmt && \
+  #  git checkout 5.3.0 && mkdir /tmp/build && cd /tmp/build && \
+  #  cmake -DBUILD_SHARED_LIBS=TRUE ../fmt &&
+  #  make -j4 install && cd /tmp && rm -r /tmp/build && rm -r /tmp/fmt
+  ### json
   apt-get install nlohmann-json-dev
 
 # =======================
@@ -76,6 +76,7 @@ From: hallac/hcana:latest
   Run the Hall-C analyzer with same root-style arguments.
 
 %apprun hcana
+  source /usr/local/bin/thisroot.sh
   hcana "$@"
 
 %appenv hcana
@@ -85,14 +86,15 @@ From: hallac/hcana:latest
   export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
   export ROOTSYS=/usr/local
   export ROOT_INCLUDE_PATH=/usr/local/include
+  export ROOT_INCLUDE_PATH=/usr/local/include:/usr/local/include/podd:/usr/local/include/hcana
 
 # =======================
 # root-config
 # =======================
-%apprun root-config
+%apprun root_config
   root-config "$@"
 
-%appenv root-config
+%appenv root_config
   export PYTHONPATH=/usr/local/lib:${PYTHONPATH}
   export PATH=/usr/local/bin:${PATH}
   export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH

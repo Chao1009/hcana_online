@@ -1,29 +1,24 @@
 image: eicweb.phy.anl.gov:4567/whit/image_recipes/root_base:latest
 
-#docker pull eicweb.phy.anl.gov:4567/whit/image_recipes/ubuntu_base:latest 
-
 stages:
   - build
-  - phase2
-
+  - build_sing_img
+  - data_replays
+  - data_tests
 
 hcana_docker:
   stage: build  
   tags: 
      - eic0 docker
   script:
-     - docker login eicweb.phy.anl.gov:4567 -u whit -p ${CI_IMAGE_BUILD_PAT}
+     - docker login eicweb.phy.anl.gov -u whit -p ${CI_IMAGE_BUILD_PAT}
      - cd containers/docker && make release
-       #- docker push eicweb.phy.anl.gov:4567/jlab/hcana
-       # - docker login eicweb.phy.anl.gov:4567 -u whit -p ${eic0_registry_push_token}
-       # - docker tag  whit/image_recipes/ubuntu_base:latest eicweb.phy.anl.gov:4567/whit/image_recipes/ubuntu_base:latest
-       # - docker push eicweb.phy.anl.gov:4567/whit/image_recipes/ubuntu_base:latest
-
 
 hcana_singularity:
   tags: 
      - singularity
-  stage: phase2
+  stage: build_sing_img
+  #when: manual
   dependencies:
      - hcana_docker
   script:
@@ -31,12 +26,45 @@ hcana_singularity:
      - mkdir -p build
      - pwd
      - cp containers/singularity/Singularity Singularity.hcana
+     - cp Singularity.hcana build/.
      - /bin/bash .gitlabci/build.sh Singularity.hcana
      - cp Singularity.hcana.simg build/.
-     - cp Singularity.hcana build/.
   artifacts:
       paths:
-        - build/Singularity.hcana.simg
         - build/Singularity.hcana
+        - build/Singularity.hcana.simg
+
+elastic_replay:
+  tags: 
+     - eic0 docker
+  stage: data_replays
+  dependencies: 
+     - hcana_singularity
+  script:
+     - bash tests/replay_elastic_data.sh
+  artifacts:
+     paths: 
+       - ROOTfiles/*
+       - build/Singularity.hcana
+       - build/Singularity.hcana.simg
+
+
+elastic_test1:
+  tags: 
+     - eic0 docker
+  stage: data_tests
+  dependencies: 
+     - elastic_replay
+  script:
+     - bash tests/elastic_test.sh
+
+elastic_test2:
+  tags: 
+     - eic0 docker
+  stage: data_tests
+  dependencies: 
+     - elastic_replay
+  script:
+     - bash tests/elastic_test2.sh
 
 
