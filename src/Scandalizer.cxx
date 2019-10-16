@@ -313,7 +313,7 @@ Int_t Scandalizer::Process( THaRunBase* run )
     fBench->Print("Output");
     fBench->Print("Cuts");
   }
-  if( (fVerbose>1 || fDoBench) && !fatal ){
+  if( (fVerbose>1 && fDoBench) && !fatal ){
     fBench->Print("Total");
   }
 
