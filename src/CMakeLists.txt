@@ -65,6 +65,7 @@ target_include_directories(${LIBNAME}
     $<BUILD_INTERFACE:${SPDLOG_INCLUDE_DIR}>
     $<INSTALL_INTERFACE:${SPDLOG_INCLUDE_DIR}>
     $<BUILD_INTERFACE:${FMT_INCLUDE_DIR}>
+    /site/coda/3.10/Linux-x86_64/include
   )
 
 target_compile_options(${LIBNAME}
@@ -77,10 +78,16 @@ if(WITH_DEBUG)
   target_compile_definitions(${LIBNAME} PUBLIC WITH_DEBUG)
 endif()
 
+target_link_directories(${LIBNAME}
+    PUBLIC
+    "/site/coda/3.10/Linux-x86_64/lib"
+    )
+
 target_link_libraries(${LIBNAME}
   PUBLIC
     Podd::Podd
     Podd::Decode
+    et
   )
 set_target_properties(${LIBNAME} PROPERTIES
   SOVERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -111,6 +118,7 @@ build_root_dictionary(${LIBNAME} ${headers}
   -I${CMAKE_CURRENT_SOURCE_DIR}/include/hcana
   -I${Podd_DIR}/../../include
   -I${Podd_DIR}/../../include/podd2
+  -I/site/coda/3.10/Linux-x86_64/include
   TARGETS ${LIBNAME}
   LINKDEF include/HallC_LinkDef.h 
   )
