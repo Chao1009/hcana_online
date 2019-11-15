@@ -35,6 +35,7 @@ hcana_singularity:
         - build/Singularity.hcana.simg
 
 elastic_replay:
+  when: manual
   tags: 
      - eic0 docker
   stage: data_replays
@@ -50,6 +51,7 @@ elastic_replay:
 
 
 elastic_test1:
+  when: manual
   tags: 
      - eic0 docker
   stage: data_tests
@@ -59,6 +61,7 @@ elastic_test1:
      - bash tests/elastic_test.sh
 
 elastic_test2:
+  when: manual
   tags: 
      - eic0 docker
   stage: data_tests
