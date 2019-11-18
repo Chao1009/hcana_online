@@ -7,8 +7,8 @@ namespace hcana {
 
 Int_t Scandalizer::ReadOneEvent()
 {
-  // Read one event from current run (fRun) and raw-decode it using the
-  // current decoder (fEvData)
+    // Read one event from current run (fRun) and raw-decode it using the
+    // current decoder (fEvData)
 
   if( fDoBench ) {fBench->Begin("RawDecode");}
 
