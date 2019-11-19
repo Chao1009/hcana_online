@@ -8,7 +8,7 @@ include(FindThreads)
 
 #----------------------------------------------------------------------------
 # Sources and headers
-file(GLOB src "*.cxx")
+file(GLOB src "*.cxx" "*.cpp")
 file(GLOB allheaders RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.h")
 list(REMOVE_ITEM allheaders
   "${CMAKE_CURRENT_SOURCE_DIR}/${LIBNAME}_LinkDef.h"
