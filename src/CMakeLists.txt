@@ -79,11 +79,6 @@ if(WITH_DEBUG)
   target_compile_definitions(${LIBNAME} PUBLIC WITH_DEBUG)
 endif()
 
-target_link_directories(${LIBNAME}
-    PUBLIC
-    "/site/coda/3.10/Linux-x86_64/lib"
-    )
-
 target_link_libraries(${LIBNAME}
   PUBLIC
     Podd::Podd
