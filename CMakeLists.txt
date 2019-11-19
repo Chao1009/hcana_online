@@ -5,6 +5,7 @@ project(hcana VERSION 0.95 LANGUAGES CXX)
 option(HCANA_BUILTIN_PODD "Use built-in Podd submodule (default: YES)" OFF)
 
 include(cmake/os.cmake)
+include(FindThreads)
 
 find_package(ROOT 6.0 REQUIRED CONFIG)
 include(${ROOT_USE_FILE})
@@ -22,6 +23,9 @@ if(NOT spdlog_FOUND)
 else()
   get_target_property(SPDLOG_INCLUDE_DIR spdlog::spdlog INTERFACE_INCLUDE_DIRECTORIES)
 endif()
+
+find_package(coda_et REQUIRED)
+get_target_property(CODA_ET_INCLUDE_DIR coda_et::coda_et INTERFACE_INCLUDE_DIRECTORIES)
 
 #----------------------------------------------------------------------------
 # Set up Podd and ROOT dependencies

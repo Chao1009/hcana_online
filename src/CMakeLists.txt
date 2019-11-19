@@ -4,6 +4,7 @@ cmake_minimum_required(VERSION 3.5)
 # Names of the main items we build here
 set(LIBNAME HallC)
 set(EXENAME hcana)
+include(FindThreads)
 
 #----------------------------------------------------------------------------
 # Sources and headers
@@ -65,7 +66,7 @@ target_include_directories(${LIBNAME}
     $<BUILD_INTERFACE:${SPDLOG_INCLUDE_DIR}>
     $<INSTALL_INTERFACE:${SPDLOG_INCLUDE_DIR}>
     $<BUILD_INTERFACE:${FMT_INCLUDE_DIR}>
-    /site/coda/3.10/Linux-x86_64/include
+    $<BUILD_INTERFACE:${CODA_ET_INCLUDE_DIR}>
   )
 
 target_compile_options(${LIBNAME}
@@ -87,7 +88,7 @@ target_link_libraries(${LIBNAME}
   PUBLIC
     Podd::Podd
     Podd::Decode
-    et
+    coda_et::coda_et
   )
 set_target_properties(${LIBNAME} PROPERTIES
   SOVERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -113,12 +114,12 @@ build_root_dictionary(${LIBNAME} ${headers}
   INCLUDEDIRS 
   $<BUILD_INTERFACE:-I${SPDLOG_INCLUDE_DIR}>
   $<BUILD_INTERFACE:-I${FMT_INCLUDE_DIR}>
+  $<BUILD_INTERFACE:-I${CODA_ET_INCLUDE_DIR}>
   -I${CMAKE_CURRENT_SOURCE_DIR} 
   -I${CMAKE_CURRENT_SOURCE_DIR}/include 
   -I${CMAKE_CURRENT_SOURCE_DIR}/include/hcana
   -I${Podd_DIR}/../../include
   -I${Podd_DIR}/../../include/podd2
-  -I/site/coda/3.10/Linux-x86_64/include
   TARGETS ${LIBNAME}
   LINKDEF include/HallC_LinkDef.h 
   )
