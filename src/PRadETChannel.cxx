@@ -36,8 +36,7 @@ PRadETChannel::~PRadETChannel()
 // Close ET connection
 void PRadETChannel::ForceClose()
 {
-    if(et_id != nullptr && et_alive(et_id))
-    {
+    if((et_id != nullptr) && et_alive(et_id)) {
         et_forcedclose(et_id);
         et_id = nullptr;
     }

@@ -614,10 +614,10 @@ static void * signal_thread (void *arg) {
 
   sigset_t   signal_set;
   int        sig_number;
- 
+
   sigemptyset(&signal_set);
   sigaddset(&signal_set, SIGINT);
-  
+
   /* Not necessary to clean up as ET system will do it */
   sigwait(&signal_set, &sig_number);
   printf("Got control-C, exiting\n");

@@ -20,6 +20,7 @@ foreach(exe_src ${APP_SOURCES})
 
     target_link_libraries(${exe}
     PUBLIC
+        ${PROJECT_NAME}::HallC
         Podd::Podd
         Podd::Decode
         coda_et::coda_et
