@@ -1,5 +1,5 @@
 # ignore patterns
-
+build
 # Auto generated files
 cppcheck_report.txt
 HallCDict.cxx

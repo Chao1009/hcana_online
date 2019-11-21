@@ -93,5 +93,6 @@
 #pragma link C++ class hcana::Scandalizer+;
 #pragma link C++ class hcana::TrackingEfficiency+;
 
+#pragma link C++ class hcana::OnlineMonitor+;
 // Postamble for HallC_Linkdef.h file
 #endif

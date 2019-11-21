@@ -712,7 +712,7 @@ std::string THcParmList::PrintJSON(int run_number ) const {
   // write prettified JSON to another file
   //std::ofstream o("pretty.json");
   //o << std::setw(4) << jrun << std::endl;
-  return jrun.dump();
+  return jrun.dump(2);
 }
 
 

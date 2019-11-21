@@ -34,7 +34,6 @@ From: eicweb.phy.anl.gov:4567/jlab/hallc/analyzer_software/hcana:latest
   #  cmake -DBUILD_SHARED_LIBS=TRUE ../fmt &&
   #  make -j4 install && cd /tmp && rm -r /tmp/build && rm -r /tmp/fmt
   ### json
-  apt-get install nlohmann-json-dev
 
 # =======================
 # global
