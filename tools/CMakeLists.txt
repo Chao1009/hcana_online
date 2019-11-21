@@ -16,6 +16,7 @@ foreach(exe_src ${APP_SOURCES})
         $<INSTALL_INTERFACE:${SPDLOG_INCLUDE_DIR}>
         $<BUILD_INTERFACE:${FMT_INCLUDE_DIR}>
         $<BUILD_INTERFACE:${CODA_ET_INCLUDE_DIR}>
+        $<BUILD_INTERFACE:${EVIO_INCLUDE_DIR}>
     )
 
     target_link_libraries(${exe}
@@ -24,6 +25,7 @@ foreach(exe_src ${APP_SOURCES})
         Podd::Podd
         Podd::Decode
         coda_et::coda_et
+        EVIO::evioxx
     )
     install(TARGETS ${exe} DESTINATION ${CMAKE_INSTALL_BINDIR})
 endforeach(exe_src ${APP_SOURCES})

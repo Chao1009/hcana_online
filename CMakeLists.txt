@@ -27,6 +27,9 @@ endif()
 find_package(coda_et REQUIRED)
 get_target_property(CODA_ET_INCLUDE_DIR coda_et::coda_et INTERFACE_INCLUDE_DIRECTORIES)
 
+find_package(EVIO REQUIRED)
+get_target_property(EVIO_INCLUDE_DIR EVIO::EVIO INTERFACE_INCLUDE_DIRECTORIES)
+
 #----------------------------------------------------------------------------
 # Set up Podd and ROOT dependencies
 if(HCANA_BUILTIN_PODD)

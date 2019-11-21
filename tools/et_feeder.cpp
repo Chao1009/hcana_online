@@ -1,12 +1,14 @@
 #include "ConfigOption.h"
 #include "PRadETChannel.h"
 #include "et.h"
-#include "evio.h"
+#include "evio/evioUtil.hxx"
+#include "evio/evioFileChannel.hxx"
 #include <csignal>
 #include <thread>
 #include <chrono>
 #include <iostream>
 
+#define PROGRESS_COUNT 100
 
 using namespace std::chrono;
 
@@ -19,7 +21,7 @@ void signal_handler(int signal) {
 }
 
 
-int main(int argc, char* argv[])
+int main(int argc, char* argv[]) try
 {
     // setup input arguments
     ConfigOption conf_opt;
@@ -65,19 +67,20 @@ int main(int argc, char* argv[])
         }
     }
 
+    // attach to ET system
     auto ch = new PRadETChannel();
-    try {
-        ch->Open(host.c_str(), port, etf.c_str());
-        ch->NewStation("Data Feeder");
-        ch->AttachStation();
-    } catch (PRadException e) {
-        std::cerr << e.FailureType() << ": " << e.FailureDesc() << std::endl;
-        return -1;
-    }
+    ch->Open(host.c_str(), port, etf.c_str());
+    ch->NewStation("Data Feeder");
+    ch->AttachStation();
+
+    // evio file reader
+    evio::evioFileChannel *chan = new evio::evioFileChannel(conf_opt.GetArgument(0).c_str(), "r");
+    chan->open();
 
     // install signal handler
     std::signal(SIGINT, signal_handler);
-    while (true) {
+    int count = 0;
+    while (chan->read()) {
         if (gSignalStatus == SIGINT) {
             std::cout << "Received control-C, exiting..." << std::endl;
             ch->ForceClose();
@@ -86,9 +89,26 @@ int main(int argc, char* argv[])
         system_clock::time_point start(system_clock::now());
         system_clock::time_point next(start + std::chrono::milliseconds(interval));
 
+        if (++count % PROGRESS_COUNT == 0) {
+            std::cout << "Read and feed " << count << " events to ET, rate is 1 event per "
+                      << interval << " ms.\r" << std::flush;
+        }
+        ch->Write((void*) chan->getBuffer(), chan->getBufSize() * sizeof(uint32_t));
+
         std::this_thread::sleep_until(next);
     }
+    std::cout << "Read and feed " << count << " events to ET, rate is 1 event per "
+              << interval << " ms." << std::endl;
 
+    chan->close();
     return 0;
+
+} catch (PRadException e) {
+    std::cerr << e.FailureType() << ": " << e.FailureDesc() << std::endl;
+    return -1;
+} catch (evio::evioException e) {
+    std::cerr << e.toString() << endl;
+} catch (...) {
+    std::cerr << "?unknown exception" << endl;
 }
 
