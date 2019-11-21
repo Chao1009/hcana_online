@@ -57,6 +57,7 @@ public:
     void DetachStation();
     void ForceClose();
     bool Read();
+    bool Write(void *buf, int nbytes);
     void *GetBuffer() {return (void*) buffer;}
     size_t GetBufferLength() {return bufferSize;}
     Configuration &GetConfig() {return config;}

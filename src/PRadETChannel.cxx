@@ -149,18 +149,68 @@ bool PRadETChannel::Read()
         return false;
     case ET_ERROR_DEAD:
         throw(PRadException(PRadException::ET_READ_ERROR,"et_client: et is dead!"));
-     case ET_ERROR_TIMEOUT:
+    case ET_ERROR_TIMEOUT:
         throw(PRadException(PRadException::ET_READ_ERROR,"et_client: got timeout!!"));
-     case ET_ERROR_BUSY:
+    case ET_ERROR_BUSY:
         throw(PRadException(PRadException::ET_READ_ERROR,"et_client: station is busy!"));
-     case ET_ERROR_WAKEUP:
+    case ET_ERROR_WAKEUP:
         throw(PRadException(PRadException::ET_READ_ERROR,"et_client: someone told me to wake up."));
-     default:
+    default:
         throw(PRadException(PRadException::ET_READ_ERROR,"et_client: unkown error!"));
-     }
+    }
 
     // copy the data buffer
     copyEvent();
+
+    // put back the event
+    status = et_event_put(et_id, att, etEvent);
+
+    switch(status)
+    {
+    case ET_OK:
+        break;
+    case ET_ERROR_DEAD:
+        throw(PRadException(PRadException::ET_READ_ERROR,"et_client: et is dead!"));
+    default:
+        throw(PRadException(PRadException::ET_READ_ERROR,"et_client: unkown error!"));
+    }
+
+    return true;
+}
+
+
+bool PRadETChannel::Write(void *buf, int nbytes)
+{
+    // check if et is opened or alive
+    if(et_id == nullptr || !et_alive(et_id))
+        throw(PRadException(PRadException::ET_READ_ERROR,"et_client: et is not opened or dead!"));
+
+    et_att_id att = curr_stat->GetAttachID();
+
+    int status = et_event_new(et_id, att, &etEvent, ET_SLEEP, nullptr, nbytes);
+
+    switch(status) {
+    case ET_OK:
+        break;
+    case ET_ERROR_EMPTY:
+        return false;
+    case ET_ERROR_DEAD:
+        throw(PRadException(PRadException::ET_READ_ERROR,"et_client: et is dead!"));
+    case ET_ERROR_TIMEOUT:
+        throw(PRadException(PRadException::ET_READ_ERROR,"et_client: got timeout!!"));
+    case ET_ERROR_BUSY:
+        throw(PRadException(PRadException::ET_READ_ERROR,"et_client: station is busy!"));
+    case ET_ERROR_WAKEUP:
+        throw(PRadException(PRadException::ET_READ_ERROR,"et_client: someone told me to wake up."));
+    default:
+        throw(PRadException(PRadException::ET_READ_ERROR,"et_client: unkown error!"));
+    }
+
+    // build et event
+    void *data;
+    et_event_getdata(etEvent, &data);
+    memcpy((void *) data, (const void *) buf, nbytes);
+    et_event_setlength(etEvent, nbytes);
 
     // put back the event
     status = et_event_put(et_id, att, etEvent);
